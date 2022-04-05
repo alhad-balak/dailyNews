@@ -137,25 +137,44 @@ export class News extends Component {
   constructor() {
     super();
     this.state = {
-      articles: this.articles
+      articles: this.articles,
+      loading: false,
+      page: 1,
+      pageSize: 21,
+      totalResults: 1
     }
   }
   async componentDidMount() {
-    let url = "https://newsapi.org/v2/everything?sources=techcrunch&apiKey=7aa8afaf73474ea2b5b9814f71748140";
+    let url = `https://newsapi.org/v2/everything?sources=techcrunch&apiKey=7aa8afaf73474ea2b5b9814f71748140&page=1&pageSize=${this.state.pageSize}`;
     let data = await fetch(url);
     let parsedData = await data.json();
     // console.log(parsedData.articles);
     // this.articles=parsedData.articles;
-    this.setState({articles: parsedData.articles});
+    this.setState({ articles: parsedData.articles, totalResults: parsedData.totalResults });
     // console.log(this.state.articles);
   }
+  handleNextClick = async () => {
+    console.log("Next button is clicked") 
+    if (this.state.page+1<=Math.ceil(this.state.totalResults / this.state.pageSize)){
+      let url = `https://newsapi.org/v2/everything?sources=techcrunch&apiKey=7aa8afaf73474ea2b5b9814f71748140&page=${this.state.page + 1}&pageSize=${this.state.pageSize}`;
+      let data = await fetch(url);
+      let parsedData = await data.json();
+      this.setState({ articles: parsedData.articles, page: this.state.page + 1 });
+    }
+  }
+  handlePrevClick = async () => {
+    console.log("Prveious button is clicked")
+    let url = `https://newsapi.org/v2/everything?sources=techcrunch&apiKey=7aa8afaf73474ea2b5b9814f71748140&page=${this.state.page - 1}&pageSize=${this.state.pageSize}`;
+    let data = await fetch(url);
+    let parsedData = await data.json();
+    this.setState({ articles: parsedData.articles, page: this.state.page - 1 });
 
+  }
   render() {
     return (
-      <div className='container mx-1'>
+      <div className='container mx-1 my-2'>
         <center><h1>Daily News- Top Headlines</h1></center>
 
-        {/* <center> */}
         <div className="row my-4 mx-0 ">
           {this.state.articles.map((element) => {
             // console.log(element);
@@ -164,7 +183,10 @@ export class News extends Component {
             </div>
           })}
         </div>
-        {/* </center> */}
+        <div className='d-flex justify-content-between'>
+          <button type="button" disabled={this.state.page <= 1} className="btn btn-sm btn-primary" onClick={this.handlePrevClick}> &larr; Previous</button>
+          <button type="button" disabled={this.state.page+1>Math.ceil(this.state.totalResults / this.state.pageSize)}className="btn btn-sm btn-primary" onClick={this.handleNextClick}>Next &rarr;</button>
+        </div>
       </div >
     )
   }
