@@ -8,7 +8,7 @@ export class NewsItem extends Component {
         <img src={imageURL} className="img-thumbnail card-img-top" alt="..." />
         <div className="card-body">
           <h5 className="card-title">{title.slice(0, 45)}{title.length > 10 ? "..." : "."}</h5>
-          <p className="card-text">{description.slice(0, 84)}{description.length > 70 ? "..." : ""}</p>
+          <p className="card-text">{description?description.slice(0, 84):""}{description?description.length > 70 ? "..." : "":""}</p>
           <p className="card-text">
             <small className="text-muted">Source: {source.name}</small><br />
             <small className="text-muted"><em> {author ? "By " : ""}{author} {author&&time?"on "+time.slice(0,10):!author&&time?"Published on "+time.slice(0,10):""}</em></small>
