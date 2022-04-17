@@ -5,18 +5,19 @@ import PropTypes from 'prop-types'
 
 export class News extends Component {
   articles = []
-    
 
   static defaultProps = {
     country: 'in',
     category: 'general',
     pageSize: 12
   }
+
   static propTypes = {
     country: PropTypes.string,
     category: PropTypes.string,
     pageSize: PropTypes.number
   }
+
   constructor(props) {
     super(props);
     this.state = {

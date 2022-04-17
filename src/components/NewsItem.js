@@ -10,7 +10,7 @@ export class NewsItem extends Component {
           <span className="visually-hidden">unread messages</span>
         </span>
 
-        <img   src={imageURL} className="img-thumbnail card-img-top" alt="..." />
+        <img src={imageURL?imageURL:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoruLW-fPJAchs4OVGL2xH3sUKqSyo_8cjDvk_9NEieCEjmzCVwS_l0qdX6QMRhmhA6Fo"} className="img-thumbnail card-img-top" alt="..." />
         <div className="card-body">
           <h5 className="card-title">{title.slice(0, 45)}{title.length > 10 ? "..." : "."}</h5>
           <p className="card-text">{description ? description.slice(0, 67) : ""}{description ? description.length > 70 ? "..." : "" : ""}</p>
