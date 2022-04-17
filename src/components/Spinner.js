@@ -4,7 +4,7 @@ import React, { Component } from 'react'
 export class Spinner extends Component {
     render() {
         return (
-            <div>
+            <div className='text-center'>
                 <img src={spinnerImage} alt="spinnerImage"/>
             </div>
         )
