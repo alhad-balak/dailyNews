@@ -5,10 +5,10 @@ export class NewsItem extends Component {
     let { title, description, imageURL, newsURL, time, author, source } = this.props;
     return (
       <div className='text-left'><div className="card">
-
-        <span className="position-absolute top-0 translate-middle badge rounded-pill bg-danger" style={{ left: '85%', zIndex: '1' }}>{source ? source.name.split(".com")[0] : "unknown"}
-          <span className="visually-hidden">unread messages</span>
+        <div style={{display:'flex', justifyContent:'flex-end', position:'absolute', right:'0'}}>
+        <span className="badge rounded-pill bg-danger">{source ? source.name.split(".com")[0] : "unknown"}
         </span>
+        </div>
 
         <img src={imageURL?imageURL:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoruLW-fPJAchs4OVGL2xH3sUKqSyo_8cjDvk_9NEieCEjmzCVwS_l0qdX6QMRhmhA6Fo"} className="img-thumbnail card-img-top" alt="..." />
         <div className="card-body">
