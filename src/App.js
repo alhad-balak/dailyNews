@@ -18,7 +18,7 @@ export default class App extends Component {
     this.setState({
       progress: updatedProgress
     })
-    console.log(this.apiKey);
+    // console.log(this.apiKey);
   }
   render() {
     return (
