@@ -1,3 +1,7 @@
+# dailyNews
+A news website that is driven by social media and the virality of news. Checkout the [live site](https://yourdailynews.netlify.app/).
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
