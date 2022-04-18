@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import NavBar from './components/NavBar';
 import News from './components/News';
@@ -8,18 +7,18 @@ import {
   Switch,
   Route
 } from "react-router-dom";
-
 import React, { Component } from 'react'
 
 export default class App extends Component {
+  apiKey = process.env.REACT_APP_NEWS_APIKEY;
   state = {
-    progress: 0,
-    apiKey: process.env.NEWS_APIKEY
+    progress: 0
   }
-  setProgress=(updatedProgress)=> {
+  setProgress = (updatedProgress) => {
     this.setState({
       progress: updatedProgress
     })
+    console.log(this.apiKey);
   }
   render() {
     return (
@@ -27,7 +26,7 @@ export default class App extends Component {
         <Router>
           <NavBar />
           <LoadingBar
-          height={4}
+            height={4}
             color='#f11946'
             progress={this.state.progress}
           />
@@ -52,13 +51,3 @@ export default class App extends Component {
     )
   }
 }
-
-// function App() {
-//   return (
-//     <>
-
-//     </>
-//   );
-// }
-
-// export default App;
