@@ -47,7 +47,7 @@ export class News extends Component {
     this.setState({
       totalResults: parsedData.totalResults,
       articles: (parsedData.articles),
-      loading: parsedData.status == "ok" ? false : true
+      loading: parsedData.status === "ok" ? false : true
     });
 
     this.props.setProgress(100);
@@ -106,7 +106,7 @@ export class News extends Component {
     let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&page=${this.state.page}&pageSize=${this.props.pageSize}`;
     let data = await fetch(url);
     let parsedData = await data.json();
-    // console.log(this.state.articles);
+    console.log(this.state.articles);
     if (parsedData.articles.length === 0)
       this.setState({
         loading: false
@@ -114,7 +114,7 @@ export class News extends Component {
     // this.articles=parsedData.articles;
     this.setState({
       totalResults: parsedData.totalResults,
-      loading: parsedData.status == "ok" ? false : true,
+      loading: parsedData.status === "ok" ? false : true,
       articles: this.state.articles.concat(parsedData.articles)
     });
     this.setState({
@@ -124,10 +124,10 @@ export class News extends Component {
 
   render() {
     return (
-      <div className='container mx-1 my-2'>
-        <center><h1>Daily News- Top Headlines</h1>
+      <div>
+        <h1 className='text-center' style={{marginTop:'70px'}}>Daily News- Top {this.props.category==='general'?null:this.props.category[0].toUpperCase()+this.props.category.slice(1)} Headlines</h1>
           {/* {this.state.loading && <Spinner />} */}
-        </center>
+
         <InfiniteScroll
           dataLength={this.state.articles.length ? this.state.articles.length : null}
           next={this.fetchMoreData}
